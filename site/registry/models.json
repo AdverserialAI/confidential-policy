@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/models.schema.json",
+  "version": 1,
+  "issued_at": "2026-10-04T00:00:00Z",
+  "models": [
+    {
+      "id": "lordx64/cyberglm",
+      "aliases": ["cyberglm"],
+      "display_name": "CyberGLM",
+      "served_name": "lordx64/cyberglm",
+      "policy_ref": "policies/lordx64-cyberglm.json"
+    }
+  ]
+}

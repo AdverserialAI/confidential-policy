@@ -1,0 +1,22 @@
+{
+  "$schema": "../schema/runtime-policy.schema.json",
+  "version": 1,
+  "status": "template-not-production",
+  "model_id": "lordx64/cyberglm",
+  "allowed_runtime": {
+    "tee": ["intel-tdx"],
+    "gpu_attestation": ["nvidia-cc"],
+    "minimum_gpu_count": 1
+  },
+  "required_bindings": [
+    "fresh_client_nonce",
+    "tls_or_hpke_public_key",
+    "runtime_image_digest",
+    "model_artifact_digest",
+    "deployment_configuration_digest"
+  ],
+  "release": {
+    "source_repository": "https://github.com/AdverserialAI/attest-proxy",
+    "provenance": "sigstore-required-before-production"
+  }
+}

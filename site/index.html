@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>verify.adverserial.ai — confidential inference verification</title>
+<style>
+  :root { --ink:#202224; --muted:#626870; --line:#e4e7ec; --ok:#166534; }
+  body { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background:#f4f5f7; color:var(--ink); margin:0; }
+  main { max-width:880px; margin:56px auto; padding:0 24px; }
+  .card { background:white; border:1px solid var(--line); border-radius:8px; padding:28px; margin:0 0 20px; }
+  h1 { font-size:1.3rem; letter-spacing:.04em; margin:0 0 8px; }
+  h2 { font-size:.9rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:0 0 12px; }
+  code, pre { background:#f4f5f7; border:1px solid var(--line); border-radius:4px; }
+  code { padding:2px 6px; font-size:.85em; }
+  pre { padding:14px; overflow:auto; font-size:.78rem; line-height:1.55; }
+  table { width:100%; border-collapse:collapse; font-size:.82rem; }
+  td, th { text-align:left; padding:9px 10px; border-bottom:1px solid var(--line); }
+  th { color:var(--muted); font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; }
+  .dim { color:var(--muted); font-size:.85rem; line-height:1.7; }
+  .tag { font-size:.72rem; letter-spacing:.1em; color:var(--muted); }
+  .ok { color:var(--ok); }
+  #live { white-space:pre-wrap; font-size:.78rem; }
+</style>
+</head>
+<body>
+<main>
+  <div class="tag">ADVERSERIAL AI · CONFIDENTIAL INFERENCE</div>
+  <h1>verify.adverserial.ai</h1>
+  <p class="dim">Public policy registry and verification entry point for Adverserial's
+  attested inference. Everything on this page is public evidence — no account content ever
+  passes through this site.</p>
+
+  <div class="card">
+    <h2>What you can prove</h2>
+    <p class="dim">For configured models, prompts and completions are encrypted from your
+    client to an attested confidential VM (Intel TDX + NVIDIA Protected-PCIe H200s).
+    The browser/SDK validates fresh runtime evidence before trusting the endpoint.
+    Billing receives account, entitlement, and token-count metadata — never prompt or
+    completion content. Not in scope: DNS, email, static hosting, browser extensions.</p>
+  </div>
+
+  <div class="card">
+    <h2>Models &amp; nodes (live registry)</h2>
+    <table id="models"><thead><tr><th>Model</th><th>Nodes</th><th>Artifact</th></tr></thead><tbody></tbody></table>
+    <p class="dim" style="margin-top:14px">Machine-readable: <code>/registry/models.json</code> · <code>/registry/nodes.json</code></p>
+  </div>
+
+  <div class="card">
+    <h2>Live check — cc-api.adverserial.ai</h2>
+    <p class="dim">Fetches a fresh nonce-bound attestation from the production enclave and
+    checks the receipt structure client-side. Full chain validation (Intel collateral,
+    NVIDIA NRAS) via the SDK: <code>python -m adverserial verify https://cc-api.adverserial.ai/v1</code></p>
+    <pre id="live">loading…</pre>
+  </div>
+
+  <div class="card">
+    <h2>Verify from your harness</h2>
+    <pre># python
+pip install adverserial
+python -m adverserial verify https://cc-api.adverserial.ai/v1 --model lordx64/cyberglm
+
+# kimi-code / opencode plugins: see adverserial-sdk/plugins/</pre>
+  </div>
+
+  <p class="dim">Claims use the exact scope above. An expired, replayed, or mismatched proof
+  must fail closed — if it doesn't, that's an incident: contact@adverserial.ai.</p>
+</main>
+<script>
+(async () => {
+  const el = document.getElementById('live');
+  try {
+    const nonce = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(32))))
+      .replaceAll('+','-').replaceAll('/','_').replace(/=+$/,'');
+    const t0 = performance.now();
+    const r = await fetch('https://cc-api.adverserial.ai/attestation?nonce=' + nonce, {cache:'no-store'});
+    const ms = Math.round(performance.now() - t0);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const j = await r.json();
+    const e = j.evidence || {};
+    const lines = [];
+    lines.push('HTTP ' + r.status + ' in ' + ms + ' ms');
+    lines.push('version:        ' + (e.version ?? '?'));
+    lines.push('issued_at:      ' + (e.issued_at ?? '?'));
+    lines.push('expires_at:     ' + (e.expires_at ?? '?'));
+    lines.push('dev_mode:       ' + (e.dev ? 'TRUE (plumbing only)' : 'false'));
+    lines.push('tdx_quote:      ' + (e.tdx_quote ? 'present (' + String(e.tdx_quote).length + ' chars)' : 'MISSING'));
+    lines.push('gpu_evidence:   ' + (e.gpu_evidence ? 'present (fresh at ' + (e.gpu_evidence_fresh_at||'?') + ')' + (e.gpu_evidence_stale ? ' STALE' : '') : 'not yet collected'));
+    lines.push('tls_spki:       ' + (e.tls_spki_sha256 ?? '?'));
+    lines.push('receipt:        ' + (j.verification_receipt ? 'present (ES256 JWS)' : 'MISSING'));
+    lines.push('model:          ' + ((e.workload||{}).model_id ?? '?'));
+    lines.push('policy:         ' + ((e.workload||{}).policy_id ?? '?'));
+    el.textContent = lines.join('\n');
+  } catch (err) {
+    el.textContent = 'endpoint not reachable yet — ' + err.message +
+      '\n(the confidential API deploys to cc-api.adverserial.ai at launch)';
+  }
+  try {
+    const m = await fetch('registry/models.json').then(r=>r.json());
+    const tbody = document.querySelector('#models tbody');
+    for (const mod of m.models) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + mod.id + '</td><td>' + mod.nodes.join(', ') + '</td><td>' + mod.artifact.format + '</td>';
+      tbody.appendChild(tr);
+    }
+  } catch (e) { /* registry serves once published */ }
+})();
+</script>
+</body>
+</html>

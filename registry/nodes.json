@@ -1,0 +1,6 @@
+{
+  "$schema": "../schema/nodes.schema.json",
+  "version": 1,
+  "issued_at": "2026-10-04T00:00:00Z",
+  "nodes": []
+}

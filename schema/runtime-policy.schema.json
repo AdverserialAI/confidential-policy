@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Adverserial confidential runtime policy",
+  "type": "object",
+  "required": ["version", "status", "model_id", "allowed_runtime", "required_bindings", "release"],
+  "properties": {
+    "version": {"type": "integer", "const": 1},
+    "status": {"enum": ["template-not-production", "active", "retired"]},
+    "model_id": {"type": "string", "minLength": 1},
+    "allowed_runtime": {"type": "object", "required": ["tee", "gpu_attestation", "minimum_gpu_count"], "properties": {"tee": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "gpu_attestation": {"type": "array", "minItems": 1, "items": {"type": "string"}}, "minimum_gpu_count": {"type": "integer", "minimum": 1}}},
+    "required_bindings": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+    "release": {"type": "object", "required": ["source_repository", "provenance"], "properties": {"source_repository": {"type": "string", "format": "uri"}, "provenance": {"type": "string"}}}
+  }
+}
