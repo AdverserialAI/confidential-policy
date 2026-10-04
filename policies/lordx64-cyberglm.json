@@ -17,7 +17,12 @@
     "tls_or_hpke_public_key",
     "runtime_image_digest",
     "model_artifact_digest",
-    "deployment_configuration_digest"
+    "deployment_configuration_digest",
+    "tdx_quote",
+    "tdx_event_log",
+    "tls_spki_der",
+    "gpu_evidence",
+    "report_data"
   ],
   "release": {
     "source_repository": "https://github.com/AdverserialAI/attest-proxy",

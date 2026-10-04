@@ -35,6 +35,10 @@ def main() -> int:
         if status == "active":
             for field in ("policy_id", "endpoint", "tls_spki_sha256", "receipt_keys", "evidence", "release_manifest"):
                 require(field in policy, f"active policy {ident} missing {field}")
+            required_bindings = policy.get("required_bindings")
+            require(isinstance(required_bindings, list), f"active policy {ident} has invalid required_bindings")
+            for binding in ("fresh_client_nonce", "tdx_quote", "tdx_event_log", "tls_spki_der", "gpu_evidence", "report_data", "runtime_image_digest", "model_artifact_digest", "deployment_configuration_digest"):
+                require(binding in required_bindings, f"active policy {ident} omits required hardware binding {binding}")
             require(DIGEST.fullmatch(policy["model_artifact_digest"] or "") is not None, f"active policy {ident} lacks model digest")
             require(DIGEST.fullmatch(policy["runtime_digest"] or "") is not None, f"active policy {ident} lacks runtime digest")
             require(DIGEST.fullmatch(policy["deployment_configuration_digest"] or "") is not None, f"active policy {ident} lacks compose digest")
