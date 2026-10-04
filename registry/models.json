@@ -7,7 +7,8 @@
       "id": "lordx64/cyberglm",
       "display_name": "CyberGLM",
       "served_name": "lordx64/cyberglm",
-      "policy_ref": "policies/lordx64-cyberglm.json"
+      "policy_ref": "policies/lordx64-cyberglm.json",
+      "description": "Security guardrails relaxed and post-trained for red-team and blue-team operations."
     }
   ]
 }

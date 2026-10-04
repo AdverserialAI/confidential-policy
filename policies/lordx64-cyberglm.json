@@ -28,5 +28,6 @@
     "The policy must remain template-not-production until the release manifest becomes active.",
     "An active policy must pin model/runtime/compose digests, a TLS SPKI hash, receipt public JWKs, and independent TDX/NVIDIA verification requirements.",
     "The client rejects all prompt dispatch while this policy is not active."
-  ]
+  ],
+  "description": "Security guardrails relaxed and post-trained for red-team and blue-team operations."
 }
