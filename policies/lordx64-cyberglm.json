@@ -23,7 +23,7 @@
     "source_repository": "https://github.com/AdverserialAI/attest-proxy",
     "provenance": "sigstore-required-before-production"
   },
-  "release_manifest": "releases/attest-proxy-v0.1.0-rc.2.json",
+  "release_manifest": "releases/attest-proxy-v0.1.0-rc.3.json",
   "activation_contract": [
     "The policy must remain template-not-production until the release manifest becomes active.",
     "An active policy must pin model/runtime/compose digests, a TLS SPKI hash, receipt public JWKs, and independent TDX/NVIDIA verification requirements.",
