@@ -7,3 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 -c 'import json, pathlib; [json.loads(p.read_text()) for p in pathlib.Path(".").rglob("*.json")]'
+      - run: python3 tools/validate_registry.py

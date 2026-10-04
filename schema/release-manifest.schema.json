@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Adverserial confidential release manifest",
+  "type": "object",
+  "required": ["version", "status", "release", "source", "artifacts"],
+  "properties": {
+    "version": {"const": 1},
+    "status": {"enum": ["pre-activation", "active", "retired"]},
+    "release": {"type": "string", "minLength": 1},
+    "source": {"type": "object", "required": ["repository", "commit", "tag"]},
+    "artifacts": {"type": "array", "minItems": 1},
+    "activation_missing": {"type": "array", "items": {"type": "string"}}
+  }
+}
