@@ -29,7 +29,7 @@
     "fresh NVIDIA GPU EAT evidence validated by an independent verifier",
     "canonical model artifact digest",
     "runtime and rendered compose digests",
-    "attested cc-api TLS SPKI and receipt public key",
+    "attested cc-api TLS SPKI binding to the published receipt public key",
     "signed active policy"
   ]
 }

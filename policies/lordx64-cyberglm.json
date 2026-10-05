@@ -31,8 +31,18 @@
   "release_manifest": "releases/attest-proxy-v0.1.0-rc.9.json",
   "activation_contract": [
     "The policy must remain template-not-production until the release manifest becomes active.",
-    "An active policy must pin model/runtime/compose digests, a TLS SPKI hash, receipt public JWKs, and independent TDX/NVIDIA verification requirements.",
+    "An active policy must pin model/runtime/compose digests, a TLS SPKI hash, the published receipt JWKs, and independent TDX/NVIDIA verification requirements.",
+    "A receipt key is trusted only when fresh independently verified attestation evidence binds its DER public key and the observed TLS SPKI to the active workload.",
     "The client rejects all prompt dispatch while this policy is not active."
   ],
-  "description": "Security guardrails relaxed and post-trained for red-team and blue-team operations."
+  "description": "Security guardrails relaxed and post-trained for red-team and blue-team operations.",
+  "receipt_keys": {
+    "mAI2xsXKerRhngOm15IT4f41rE_Cpgp0G3szP8YwYdk": {
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "LH5iYRAdnOcuustRFMh9aVAvXORUgicWXEdLkx1NS2c",
+      "y": "li2dFusODv5R_ueGAXBTY4jvoeDlb1wKJ44cvAQZI0k",
+      "kid": "mAI2xsXKerRhngOm15IT4f41rE_Cpgp0G3szP8YwYdk"
+    }
+  }
 }
