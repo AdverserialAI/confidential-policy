@@ -1,0 +1,43 @@
+{
+  "$schema": "../schema/release-manifest.schema.json",
+  "version": 1,
+  "status": "pre-activation",
+  "release": "v0.1.0-rc.15",
+  "source": {
+    "repository": "https://github.com/AdverserialAI/attest-proxy",
+    "commit": "27a0ee3",
+    "tag": "v0.1.0-rc.15"
+  },
+  "artifacts": [
+    {
+      "name": "attest-proxy",
+      "image": "ghcr.io/adverserialai/attest-proxy@sha256:0c4e370155871c5b701f3ce196e7d583137cbaf503289a32aa026155c832541d",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/37621799354",
+      "provenance": "github-attestation",
+      "sbom": "spdx"
+    },
+    {
+      "name": "gpu-evidence-collector",
+      "image": "ghcr.io/adverserialai/gpu-evidence-collector@sha256:39a7ceadde328f1a4a6d275f92aec6dca94c6b0b49e9cb354f5416154675e944",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/37621799354",
+      "provenance": "github-attestation",
+      "sbom": "spdx"
+    },
+    {
+      "name": "model-measurer",
+      "image": "ghcr.io/adverserialai/model-measurer@sha256:b8a276d209124b50f6df801f31347c1979c879b988903dc3eac0e5757f26a74d",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/37621799354",
+      "provenance": "github-attestation",
+      "sbom": "spdx"
+    }
+  ],
+  "activation_missing": [
+    "direct-signed count-only meter delivery is active; a separate mTLS ingress remains optional",
+    "measured Intel TDX quote and event-log verification",
+    "fresh NVIDIA GPU EAT evidence validated by an independent verifier",
+    "canonical model artifact digest",
+    "runtime and rendered compose digests",
+    "attested cc-api TLS SPKI binding to the published receipt public key",
+    "signed active policy"
+  ]
+}
