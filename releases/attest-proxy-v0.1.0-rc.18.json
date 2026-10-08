@@ -18,14 +18,14 @@
     },
     {
       "name": "gpu-evidence-collector",
-      "image": "ghcr.io/adverserialai/gpu-evidence-collector@sha256:344517dfdd5c5be55bbca48407c039fac79fd83f58f7bfea656930aec3ffc976",
+      "image": "ghcr.io/adverserialai/gpu-evidence-collector@sha256:ddc6b1daee6d83c8cd39c35f8247faf02d4a380e68b3f771601b965ea0611676",
       "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/37817753403",
       "provenance": "github-attestation",
       "sbom": "spdx"
     },
     {
       "name": "model-measurer",
-      "image": "ghcr.io/adverserialai/model-measurer@sha256:b3f66f9130789d60dddb45fcd4e694892000a011c7d69e02d802efb8728a1ee1",
+      "image": "ghcr.io/adverserialai/model-measurer@sha256:848739ce4030d0dc93c720deebe262ce290c2a0965cd85355f5e95be87603bd4",
       "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/37817753403",
       "provenance": "github-attestation",
       "sbom": "spdx"
