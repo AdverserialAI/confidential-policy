@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/runtime-policy.schema.json",
+  "version": 1,
+  "status": "active",
+  "model_id": "lordx64/cyberglm",
+  "allowed_runtime": {
+    "tee": [
+      "intel-tdx"
+    ],
+    "gpu_attestation": [
+      "nvidia-cc"
+    ],
+    "minimum_gpu_count": 8
+  },
+  "required_bindings": [
+    "fresh_client_nonce",
+    "tls_or_hpke_public_key",
+    "runtime_image_digest",
+    "model_artifact_digest",
+    "deployment_configuration_digest",
+    "tdx_quote",
+    "tdx_event_log",
+    "tls_spki_der",
+    "gpu_evidence",
+    "report_data"
+  ],
+  "release": {
+    "source_repository": "https://github.com/AdverserialAI/attest-proxy",
+    "provenance": "github-attestation"
+  },
+  "release_manifest": "releases/attest-proxy-v0.1.0-rc.17.json",
+  "deployment_configuration_digest": "sha256:a69c88d594fddc981f0e4b220a4624e0368cf66085ff4d6876ec826020bb8b0e",
+  "runtime_image_digest": "sha256:b1259f3ea3275f66237c498ea388919729018bc9f01c3d638391e06e2cf3f469",
+  "model_artifact_digest": "sha256:846de93f3aa1ba583a432d238e1e37efdfebe51e5d3377b510592b5aad6ac4f3",
+  "tls_spki_sha256": "sha256:zD557zx8m2gI67trOhh-ajvJlyfHMgv_U_wrV8TJWMw",
+  "description": "Security guardrails relaxed and post-trained for red-team and blue-team operations.",
+  "receipt_keys": {
+    "YD9zv_Iec_-H90WJBBIaJ9zkF-cEoz3WXXk2PPBMXxI": {
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "Zu4u0kRwM56lKH2KL3TmwPDmJtAlSbaIq9NaqalfF0w",
+      "y": "A6cLGer5OiVj3v_wgJuw2OA4PaOlAbZ51Wt4gDp0ggE",
+      "kid": "YD9zv_Iec_-H90WJBBIaJ9zkF-cEoz3WXXk2PPBMXxI",
+      "use": "sig",
+      "alg": "ES256"
+    }
+  }
+}
