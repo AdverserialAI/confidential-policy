@@ -1,7 +1,7 @@
 {
   "$schema": "../schema/runtime-policy.schema.json",
   "version": 1,
-  "status": "active",
+  "status": "template-not-production",
   "model_id": "lordx64/cyberglm",
   "allowed_runtime": {
     "tee": [
@@ -44,5 +44,10 @@
       "use": "sig",
       "alg": "ES256"
     }
-  }
+  },
+  "activation_contract": [
+    "This historical source document is not a deployable active policy and must remain template-not-production.",
+    "Clients must fetch the live policy from https://verify.adverserial.ai and reject this document for prompt dispatch.",
+    "Do not mark a policy active until an active release manifest and independently verified fresh TDX, NVIDIA, TLS/HPKE, model, runtime, configuration, and receipt-key evidence are published together."
+  ]
 }

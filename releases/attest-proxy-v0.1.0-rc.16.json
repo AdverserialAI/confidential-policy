@@ -5,7 +5,7 @@
   "release": "v0.1.0-rc.16",
   "source": {
     "repository": "https://github.com/AdverserialAI/attest-proxy",
-    "commit": "9a83a8e",
+    "commit": "9a83a8e283ed13e2cb48d6ba2d3f29c0e830fae0",
     "tag": "v0.1.0-rc.16"
   },
   "artifacts": [
