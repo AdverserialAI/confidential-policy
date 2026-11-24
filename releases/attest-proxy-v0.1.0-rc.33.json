@@ -1,0 +1,48 @@
+{
+  "$schema": "../schema/release-manifest.schema.json",
+  "version": 1,
+  "status": "active",
+  "release": "v0.1.0-rc.33",
+  "published_at": "2026-11-24T18:43:37.000Z",
+  "source": {
+    "repository": "https://github.com/AdverserialAI/attest-proxy",
+    "commit": "60da7436403049895450462f2c962ac43fd698b6",
+    "tag": "v0.1.0-rc.33"
+  },
+  "artifacts": [
+    {
+      "name": "attest-proxy",
+      "image": "ghcr.io/adverserialai/attest-proxy@sha256:5a41bcfb6d7f4f3d3df53ad5ac39a45d1d32a6db206e35c0380b81d56404824b",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/45365378210",
+      "provenance": "github-attestation",
+      "sbom": "spdx",
+      "provenance_verification_command": "gh attestation verify oci://ghcr.io/adverserialai/attest-proxy@sha256:5a41bcfb6d7f4f3d3df53ad5ac39a45d1d32a6db206e35c0380b81d56404824b --repo AdverserialAI/attest-proxy"
+    },
+    {
+      "name": "gpu-evidence-collector",
+      "image": "ghcr.io/adverserialai/gpu-evidence-collector@sha256:88484069fde3c53f054b7d02645ab075166a24c0a43c2006723f148941967f06",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/40604451903",
+      "provenance": "github-attestation",
+      "sbom": "spdx",
+      "provenance_verification_command": "gh attestation verify oci://ghcr.io/adverserialai/gpu-evidence-collector@sha256:88484069fde3c53f054b7d02645ab075166a24c0a43c2006723f148941967f06 --repo AdverserialAI/attest-proxy",
+      "note": "Unchanged from v0.1.0-rc.30; the deployment keeps this image digest."
+    },
+    {
+      "name": "model-measurer",
+      "image": "ghcr.io/adverserialai/model-measurer@sha256:5f5f0653a7f75a1414a68a0e063ba7fb628f225cfb81e3a21512c206c7f4ad82",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/40604451903",
+      "provenance": "github-attestation",
+      "sbom": "spdx",
+      "provenance_verification_command": "gh attestation verify oci://ghcr.io/adverserialai/model-measurer@sha256:5f5f0653a7f75a1414a68a0e063ba7fb628f225cfb81e3a21512c206c7f4ad82 --repo AdverserialAI/attest-proxy",
+      "note": "Unchanged from v0.1.0-rc.30; the deployment keeps this image digest."
+    }
+  ],
+  "policy_ref": "/policies/production.json",
+  "deployment": {
+    "runtime_reported_compose_digest": "sha256:96ba75d8d59d93069da02661e2e6078f82b4cd7d2745a5b8b528057809831da4",
+    "boot_compose_hash": "9c78bf82dfad3a133838f2ac87406b3fe1c9d875d8a4d5fbe04e9f34d7d3b820",
+    "os_image_hash": "4771a29e03e93f0e2d5e37174cd8bb1112942c9689deb36b16c5df9e183d8623",
+    "verified_at": null
+  },
+  "activation_missing": []
+}

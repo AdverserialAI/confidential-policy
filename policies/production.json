@@ -28,44 +28,59 @@
     "source_repository": "https://github.com/AdverserialAI/attest-proxy",
     "provenance": "github-attestation"
   },
-  "release_manifest": "/releases/attest-proxy-v0.1.0-rc.30.json",
-  "deployment_configuration_digest": "sha256:861fcdf0d27d6b98eb37c036f731b42cc9c8b0bf65c7cf2273c6b59dea76fd07",
+  "release_manifest": "/releases/attest-proxy-v0.1.0-rc.33.json",
+  "deployment_configuration_digest": "sha256:96ba75d8d59d93069da02661e2e6078f82b4cd7d2745a5b8b528057809831da4",
   "runtime_image_digest": "sha256:b4f09a2ccbcfcc262d49600c3cd7f8581a793ea7d104947257b6a95500953b90",
   "model_artifact_digest": "sha256:bd18db14b7f1e98b93401d194d62c7e3b6282c7751ae1a9d523079b03e84c90e",
-  "tls_spki_sha256": "sha256:zD557zx8m2gI67trOhh-ajvJlyfHMgv_U_wrV8TJWMw",
+  "tls_spki_sha256": "sha256:sG2necy2fO2FF9K6Uivb7mEp43Arjd9q4X5yR-Ac2rI",
   "description": "DeepSeek-V4.1-Flash with category-selective cyber abliteration, non-cyber safety restoration, and identity tuning.",
   "receipt_keys": {
-    "mAI2xsXKerRhngOm15IT4f41rE_Cpgp0G3szP8YwYdk": {
+    "lsfakkya9o5p_e92fa8iLOZekwqsZzTJFwG839GXnLQ": {
       "crv": "P-256",
-      "kid": "mAI2xsXKerRhngOm15IT4f41rE_Cpgp0G3szP8YwYdk",
+      "kid": "lsfakkya9o5p_e92fa8iLOZekwqsZzTJFwG839GXnLQ",
       "kty": "EC",
-      "x": "LH5iYRAdnOcuustRFMh9aVAvXORUgicWXEdLkx1NS2c",
-      "y": "li2dFusODv5R_ueGAXBTY4jvoeDlb1wKJ44cvAQZI0k",
+      "x": "CdTO7qIlUJb_OSArpwvjC4anHSzWiBEihCUPblv6FQI",
+      "y": "ZI33qb89rrjMDJuIfkhai11g099_Aj1vY6-IJVsuDmo",
       "use": "sig",
       "alg": "ES256"
     }
   },
-  "proxy_version": "v0.1.0-rc.30",
+  "proxy_version": "v0.1.0-rc.33",
   "policy_id": "adverserial-policy/cyberseek",
-  "published_at": "2026-11-19T14:41:23.000Z",
+  "published_at": "2026-11-24T18:43:37.000Z",
   "tdx": {
-    "mrtd": "b24d3b24e9e3c16012376b52362ca09856c4adecb709d5fac33addf1c47e193da075b125b6c364115771390a5461e217",
+    "mrtd": "83baf004a06c83f6371d4d9e19c8bb1ead734ba7696e56d6b52271011394a6f24efecc27af3b5c1da41594dbfa706e97",
     "rtmr0": "d8f547a53863772b1a8b64f6b9ae70ad98549fbb44628d2f07c8ed6f883ce6288611538b27dac0eb5baa216a4154a8bd",
-    "rtmr1": "07e6f51aa763abfe75c3ddfbf4f425fe3f0ceff66d807a75e049303dce9addf68e7218729bd419638af63a370f65878c",
-    "rtmr2": "f1c82667a354194467cd8419efd14a714560dd9b85b4c13b25c11e44bf4e126248c2255fad58c303fb0ca2921765d53a",
+    "rtmr1": "2f72a4db2f7de90adeabe55607b0c1cf209fc243bc773f5862d1b00d3bb198e835e99d502e90a24005f0d1368dd24f29",
+    "rtmr2": "3d9910a33a26a769c5146dea31bea0d2924a7746ad09e121dabe709eddd5c647716f4d89279e0e24d8dbb93f9cdb605b",
     "app_id": "b74e3dde6292cc69bac759b22fc723a299aa8a83",
-    "compose_hash": "847813c4592e871a47a0f68dc1276f30a86d4f70ec474fc9ae5a0e149ad1154f",
-    "os_image_hash": "806a352e16175d90568de97dff563f31f680239e6b90e9b5b2e9141d0955b0d9"
+    "compose_hash": "9c78bf82dfad3a133838f2ac87406b3fe1c9d875d8a4d5fbe04e9f34d7d3b820",
+    "os_image_hash": "4771a29e03e93f0e2d5e37174cd8bb1112942c9689deb36b16c5df9e183d8623"
   },
   "freshness": {
     "attestation_receipt_ttl_seconds": 300,
     "gpu_evidence_max_age_seconds": 1800
   },
   "trust": {
-    "policy_distribution": "https-origin",
-    "detached_policy_signature": false,
+    "policy_distribution": "sigstore-rekor",
+    "detached_policy_signature": true,
     "receipt_signature": "ES256",
     "hardware_validation": "Intel DCAP and NVIDIA NRAS",
-    "measurement_approval": "Operator-approved deployment snapshot, corroborated against the authenticated Phala control plane and verified TDX evidence. Not a claim of independently reproduced OS builds."
+    "measurement_approval": "Operator-approved deployment snapshot, corroborated against the authenticated Phala control plane and verified TDX evidence. Not a claim of independently reproduced OS builds.",
+    "policy_signature": {
+      "bundle": "/policies/production.json.sigstore.json",
+      "certificate_identity": "https://github.com/AdverserialAI/confidential-policy/.github/workflows/sign-policy.yml@refs/heads/main",
+      "oidc_issuer": "https://token.actions.githubusercontent.com"
+    }
+  },
+  "verifier": {
+    "allowed_envs": [
+      "HF_TOKEN",
+      "CLOUDFLARE_API_TOKEN",
+      "NV_ATTESTATION_SERVICE_KEY",
+      "METER_INGRESS_SHARED_SECRET"
+    ],
+    "keys_origin": "enclave-generated",
+    "key_attestation": "/.well-known/adverserial-key-attestation"
   }
 }
