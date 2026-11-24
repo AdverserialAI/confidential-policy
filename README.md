@@ -72,9 +72,6 @@ copied to the site.
 - `.github/workflows/sign-policy.yml` — the signing workflow.
 - `site/` — a landing-page snapshot from October 2026, kept as history.
 
-`releases/attest-proxy-v0.1.0-rc.9.json` and `-rc.15.json` exist only here;
-the site does not serve them.
-
 This repository contains no credentials, private keys or model weights. The
 policy does contain the deployment's measurements and digests: they are public
 by design, because clients compare hardware evidence with them.
