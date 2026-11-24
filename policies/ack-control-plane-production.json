@@ -1,0 +1,65 @@
+{
+  "$schema": "../schema/agent-control-plane-policy.schema.json",
+  "version": 2,
+  "status": "active",
+  "policy_id": "adverserial-policy/ack-control-plane-prod",
+  "service_type": "agent-control-plane",
+  "runtime": {
+    "provider": "google-confidential-space",
+    "tee": "GCP_INTEL_TDX",
+    "project_number": "711745269151",
+    "zone": "europe-west9-a",
+    "service_account": "ack-control-plane-runtime@adverserial-ack-poc.iam.gserviceaccount.com"
+  },
+  "required_claims": [
+    "google_jwks_signature",
+    "issuer",
+    "audience",
+    "nonce",
+    "freshness",
+    "confidential_space",
+    "intel_tdx",
+    "secure_boot",
+    "production_debug_status",
+    "project_number",
+    "service_account",
+    "exact_workload_image_digest"
+  ],
+  "workload_image_digest": "sha256:881722174e6dcfd51c276358d73596553c649e979e964e9e29d2f34386db6314",
+  "source": {
+    "repository": "https://github.com/lordx64/adverserial-ack-internal",
+    "commit": "8202b443df1d877fd2c366d815e2d8c7b1039044",
+    "build_id": "2c462185-537d-4032-a47a-789a813cd843"
+  },
+  "published_at": "2026-11-19T16:30:00Z",
+  "trust_note": "No receipt key is pinned here. The control plane creates its receipt key in memory inside the Confidential Space workload at every start; the workload never writes the private key to disk and never releases it. Trust a receipt key only when fresh, Google-signed attestation of the exact workload above commits to it (see receipt_key_trust.binding), and never one listed in revoked_kids. A key changes at every restart, so evidence from an earlier start cannot be confirmed against the running workload. The browser console on this site relies on the Adverserial public verifier for the Google signature check; verify the token yourself for independence. Merkle roots are signed by the same runtime key; no independent witness or trusted timestamp service is claimed.",
+  "receipt_key_trust": {
+    "model": "attested-per-boot",
+    "alg": "ES256",
+    "binding": "eat_nonce = \"sha256:\" + base64url(SHA-256(canonical JSON, keys sorted, of {\"purpose\":\"ack-receipt-key-v1\",\"nonce\":<challenge>,\"public_jwk\":<receipt public key {crv,kty,x,y}>}))",
+    "fresh_evidence_endpoint": "https://verify.adverserial.ai/api/agents/v1/attestation",
+    "accepted_audiences": [
+      "https://verify.adverserial.ai",
+      "https://verify.adverserial.ai/public-evidence",
+      "https://adverserial.ai/enterprise"
+    ]
+  },
+  "revoked_kids": [
+    {
+      "kid": "xhGyIk1r7VfpWKesRucDD1wzxNkMQTGd-udCdc6ziIU",
+      "revoked_at": "2026-11-11T23:15:00Z",
+      "reason": "The private key was exposed before 2026-11-11. Evidence signed with it can be forged and must be rejected.",
+      "public_jwk": {
+        "kty": "EC",
+        "crv": "P-256",
+        "x": "QsYrKp9GBfmP8zi3hj7p8HPIuQNMnqi4NwnXkkZPDlY",
+        "y": "59XQAc7attkNURX61sKEKcx3dJQixqcQzVdcNOoPG3I"
+      }
+    }
+  ],
+  "supersedes": {
+    "version": 1,
+    "published_at": "2026-11-09T04:22:00Z",
+    "workload_image_digest": "sha256:963c87d1fb56e59c9b5350bf46d6d40ec752eb0c5fc92620d189514184a21dd2"
+  }
+}

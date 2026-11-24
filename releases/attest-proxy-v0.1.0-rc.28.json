@@ -1,7 +1,7 @@
 {
   "$schema": "../schema/release-manifest.schema.json",
   "version": 1,
-  "status": "pre-activation",
+  "status": "retired",
   "release": "v0.1.0-rc.28",
   "source": {
     "repository": "https://github.com/AdverserialAI/attest-proxy",
@@ -31,7 +31,8 @@
       "sbom": "spdx"
     }
   ],
-  "activation_missing": [
+  "superseded_by": "releases/attest-proxy-v0.1.0-rc.29.json",
+  "historical_activation_missing": [
     "direct-signed count-only meter delivery is active; a separate mTLS ingress remains optional",
     "measured Intel TDX quote and event-log verification",
     "fresh NVIDIA GPU EAT evidence validated by an independent verifier",
