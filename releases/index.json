@@ -1,14 +1,21 @@
 {
   "version": 1,
-  "deployed_release": "v0.1.0-rc.30",
-  "latest_published_release": "v0.1.0-rc.30",
+  "deployed_release": "v0.1.0-rc.33",
+  "latest_published_release": "v0.1.0-rc.33",
   "releases": [
+    {
+      "version": "v0.1.0-rc.33",
+      "manifest": "/releases/attest-proxy-v0.1.0-rc.33.json",
+      "source_tag": "v0.1.0-rc.33",
+      "source_commit": "60da7436403049895450462f2c962ac43fd698b6",
+      "role": "deployed"
+    },
     {
       "version": "v0.1.0-rc.30",
       "manifest": "/releases/attest-proxy-v0.1.0-rc.30.json",
       "source_tag": "v0.1.0-rc.30",
       "source_commit": "45ce9acb101492e67b9d0982bf8ad674773e5017",
-      "role": "deployed"
+      "role": "historical"
     },
     {
       "version": "v0.1.0-rc.29",
