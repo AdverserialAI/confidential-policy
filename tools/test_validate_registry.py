@@ -61,35 +61,28 @@ def expect_rejected(name: str, callback) -> None:
 def main() -> int:
     run(ROOT, 0)
 
-    expect_rejected(
-        "abbreviated source commit",
-        lambda root: mutate_json(
-            root / "releases" / "attest-proxy-v0.1.0-rc.24.json",
-            lambda value: value["source"].__setitem__("commit", "5e44f5a"),
-        ),
-    )
-    expect_rejected(
-        "mutable image reference",
-        lambda root: mutate_json(
-            root / "releases" / "attest-proxy-v0.1.0-rc.24.json",
-            lambda value: value["artifacts"][0].__setitem__("image", "ghcr.io/adverserialai/attest-proxy:latest"),
-        ),
-    )
-    expect_rejected(
-        "path traversal policy reference",
-        lambda root: mutate_json(
-            root / "registry" / "models.json",
-            lambda value: value["models"][0].__setitem__("policy_ref", "policies/../releases/attest-proxy-v0.1.0-rc.24.json"),
-        ),
-    )
-    expect_rejected(
-        "unverified active policy",
-        lambda root: mutate_json(
-            root / "policies" / "production.json",
-            lambda value: value.__setitem__("status", "active"),
-        ),
-    )
-    print("policy validator regression tests passed")
+    production = lambda root: root / "policies" / "production.json"
+    current_manifest = lambda root: root / json.loads(production(root).read_text())["release_manifest"].lstrip("/")
+    cases = {
+        "abbreviated source commit in the current release": lambda root: mutate_json(current_manifest(root), lambda v: v["source"].__setitem__("commit", "5e44f5a")),
+        "mutable image reference": lambda root: mutate_json(current_manifest(root), lambda v: v["artifacts"][0].__setitem__("image", "ghcr.io/adverserialai/attest-proxy:latest")),
+        "release from another source repository": lambda root: mutate_json(current_manifest(root), lambda v: v["source"].__setitem__("repository", "https://github.com/someone/attest-proxy")),
+        "current release not active": lambda root: mutate_json(current_manifest(root), lambda v: v.__setitem__("status", "retired")),
+        "path traversal policy reference": lambda root: mutate_json(root / "registry" / "models.json", lambda v: v["models"][0].__setitem__("policy_ref", "policies/../releases/index.json")),
+        "registry selects another model's policy": lambda root: mutate_json(root / "registry" / "models.json", lambda v: v["models"][0].__setitem__("policy_ref", "/policies/lordx64-cyberglm.json")),
+        "production policy not active": lambda root: mutate_json(production(root), lambda v: v.__setitem__("status", "template-not-production")),
+        "production policy without receipt keys": lambda root: mutate_json(production(root), lambda v: v.__setitem__("receipt_keys", {})),
+        "private receipt key published": lambda root: mutate_json(production(root), lambda v: next(iter(v["receipt_keys"].values())).__setitem__("d", "c2VjcmV0")),
+        "truncated measurement": lambda root: mutate_json(production(root), lambda v: v["tdx"].__setitem__("mrtd", v["tdx"]["mrtd"][:-2])),
+        "malformed TLS pin": lambda root: mutate_json(production(root), lambda v: v.__setitem__("tls_spki_sha256", "sha256:short")),
+        "missing hardware binding": lambda root: mutate_json(production(root), lambda v: v["required_bindings"].remove("tdx_quote")),
+        "policy and manifest name different proxy versions": lambda root: mutate_json(production(root), lambda v: v.__setitem__("proxy_version", "v0.1.0-rc.1")),
+        "credential in a release manifest": lambda root: mutate_json(current_manifest(root), lambda v: v.__setitem__("note", "-----BEGIN EC PRIVATE KEY-----")),
+        "production policy deleted": lambda root: production(root).unlink(),
+    }
+    for name, mutate in cases.items():
+        expect_rejected(name, mutate)
+    print(f"policy validator regression tests passed ({len(cases)} rejections)")
     return 0
 
 

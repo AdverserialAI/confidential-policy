@@ -1,0 +1,8 @@
+# Everything that decides what gets signed. Add further owners here before
+# enabling the "Require review from Code Owners" rule on main.
+/.github/      @lordx64
+/tools/        @lordx64
+/policies/     @lordx64
+/releases/     @lordx64
+/registry/     @lordx64
+/deployments/  @lordx64

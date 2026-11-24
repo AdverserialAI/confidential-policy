@@ -9,3 +9,4 @@ jobs:
       - run: python3 -c 'import json, pathlib; [json.loads(p.read_text()) for p in pathlib.Path(".").rglob("*.json")]'
       - run: python3 tools/validate_registry.py
       - run: python3 tools/test_validate_registry.py
+      - run: python3 tools/test_policy_release_check.py
