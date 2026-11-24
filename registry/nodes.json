@@ -3,8 +3,8 @@
   "version": 1,
   "issued_at": "2026-11-19T16:37:34.000Z",
   "trust": {
-    "distribution": "https-origin",
-    "detached_signature": false,
+    "distribution": "signed",
+    "detached_signature": true,
     "note": "The catalog is public metadata. A node is trusted only after fresh attestation is checked against its referenced policy."
   },
   "nodes": [
@@ -22,7 +22,7 @@
       "endpoint": "https://api.adverserial.ai/v1",
       "model_id": "adverserial/cyberseek",
       "policy_ref": "/policies/production.json",
-      "release_ref": "/releases/attest-proxy-v0.1.0-rc.30.json",
+      "release_ref": "/releases/attest-proxy-v0.1.0-rc.33.json",
       "description": "Production CyberSeek inference deployment. Clients must obtain fresh evidence before sending confidential input. Attestation identifies the runtime; it does not certify response quality.",
       "attestation": {
         "state": "verified-at-publication",
@@ -32,8 +32,8 @@
         "verified_at": "2026-11-19T16:37:34.000Z",
         "expires_at": "2026-11-19T16:42:34.000Z",
         "evidence_digest": "sha256:U7XrROF0DZ0IJf905eQ4h6PIgAbDf7q81bWZ8xcd2N4",
-        "receipt_key_id": "mAI2xsXKerRhngOm15IT4f41rE_Cpgp0G3szP8YwYdk",
-        "tls_spki_sha256": "sha256:zD557zx8m2gI67trOhh-ajvJlyfHMgv_U_wrV8TJWMw"
+        "receipt_key_id": "lsfakkya9o5p_e92fa8iLOZekwqsZzTJFwG839GXnLQ",
+        "tls_spki_sha256": "sha256:sG2necy2fO2FF9K6Uivb7mEp43Arjd9q4X5yR-Ac2rI"
       }
     },
     {
