@@ -1,0 +1,47 @@
+{
+  "$schema": "../schema/release-manifest.schema.json",
+  "version": 1,
+  "status": "retired",
+  "release": "v0.1.0-rc.29",
+  "published_at": "2026-10-29T15:31:58.048Z",
+  "source": {
+    "repository": "https://github.com/AdverserialAI/attest-proxy",
+    "commit": "2d79994437c58df72a599094391bc111b1e254d1",
+    "tag": "v0.1.0-rc.29"
+  },
+  "artifacts": [
+    {
+      "name": "attest-proxy",
+      "image": "ghcr.io/adverserialai/attest-proxy@sha256:195e98d4dfe9dc1c540f62deaec275024da830711e77089335477b54f390cffa",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/40604451903",
+      "provenance": "github-attestation",
+      "sbom": "spdx",
+      "provenance_verification_command": "gh attestation verify oci://ghcr.io/adverserialai/attest-proxy@sha256:195e98d4dfe9dc1c540f62deaec275024da830711e77089335477b54f390cffa --repo AdverserialAI/attest-proxy"
+    },
+    {
+      "name": "gpu-evidence-collector",
+      "image": "ghcr.io/adverserialai/gpu-evidence-collector@sha256:88484069fde3c53f054b7d02645ab075166a24c0a43c2006723f148941967f06",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/40604451903",
+      "provenance": "github-attestation",
+      "sbom": "spdx",
+      "provenance_verification_command": "gh attestation verify oci://ghcr.io/adverserialai/gpu-evidence-collector@sha256:88484069fde3c53f054b7d02645ab075166a24c0a43c2006723f148941967f06 --repo AdverserialAI/attest-proxy"
+    },
+    {
+      "name": "model-measurer",
+      "image": "ghcr.io/adverserialai/model-measurer@sha256:5f5f0653a7f75a1414a68a0e063ba7fb628f225cfb81e3a21512c206c7f4ad82",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/40604451903",
+      "provenance": "github-attestation",
+      "sbom": "spdx",
+      "provenance_verification_command": "gh attestation verify oci://ghcr.io/adverserialai/model-measurer@sha256:5f5f0653a7f75a1414a68a0e063ba7fb628f225cfb81e3a21512c206c7f4ad82 --repo AdverserialAI/attest-proxy"
+    }
+  ],
+  "policy_ref": "/policies/production.json",
+  "deployment": {
+    "runtime_reported_compose_digest": "sha256:f32d9b51afc418c0b7151da55d517f2b5b3354f7cd8e424c0edd2a3ed0d5cbdd",
+    "boot_compose_hash": "bd773fb41fd23cee2aa255b96403d7d7cbba90785ab1cc4513ebaa26db4a815b",
+    "os_image_hash": "806a352e16175d90568de97dff563f31f680239e6b90e9b5b2e9141d0955b0d9",
+    "verified_at": "2026-11-18T17:20:32.000Z"
+  },
+  "activation_missing": [],
+  "superseded_by": "releases/attest-proxy-v0.1.0-rc.30.json"
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "../schema/models.schema.json",
+  "version": 2,
+  "issued_at": "2026-11-14T00:00:00Z",
+  "models": [
+    {
+      "id": "adverserial/cyberseek",
+      "display_name": "CyberSeek",
+      "served_name": "adverserial/cyberseek",
+      "policy_ref": "/policies/production.json",
+      "description": "DeepSeek-V4.1-Flash with category-selective cyber abliteration, non-cyber safety restoration, and identity tuning."
+    }
+  ]
+}

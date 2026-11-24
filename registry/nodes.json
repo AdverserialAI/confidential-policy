@@ -1,0 +1,71 @@
+{
+  "$schema": "../schema/nodes.schema.json",
+  "version": 1,
+  "issued_at": "2026-11-19T16:37:34.000Z",
+  "trust": {
+    "distribution": "https-origin",
+    "detached_signature": false,
+    "note": "The catalog is public metadata. A node is trusted only after fresh attestation is checked against its referenced policy."
+  },
+  "nodes": [
+    {
+      "id": "cyberseek-inference-prod",
+      "display_name": "CyberSeek confidential inference",
+      "service_type": "confidential-inference",
+      "lifecycle": "active",
+      "provider": "Phala",
+      "environment": "production",
+      "technologies": [
+        "intel-tdx",
+        "nvidia-confidential-computing"
+      ],
+      "endpoint": "https://api.adverserial.ai/v1",
+      "model_id": "adverserial/cyberseek",
+      "policy_ref": "/policies/production.json",
+      "release_ref": "/releases/attest-proxy-v0.1.0-rc.30.json",
+      "description": "Production CyberSeek inference deployment. Clients must obtain fresh evidence before sending confidential input. Attestation identifies the runtime; it does not certify response quality.",
+      "attestation": {
+        "state": "verified-at-publication",
+        "verification_method": "ACK independent pinned receipt verification, Intel DCAP TDX verification with RTMR3 workload-policy replay, NVIDIA NRAS evidence and quote-bound TLS/EHBP keys",
+        "fresh_evidence_endpoint": "https://api.adverserial.ai/attestation",
+        "verification_command": "ack attestation",
+        "verified_at": "2026-11-19T16:37:34.000Z",
+        "expires_at": "2026-11-19T16:42:34.000Z",
+        "evidence_digest": "sha256:U7XrROF0DZ0IJf905eQ4h6PIgAbDf7q81bWZ8xcd2N4",
+        "receipt_key_id": "mAI2xsXKerRhngOm15IT4f41rE_Cpgp0G3szP8YwYdk",
+        "tls_spki_sha256": "sha256:zD557zx8m2gI67trOhh-ajvJlyfHMgv_U_wrV8TJWMw"
+      }
+    },
+    {
+      "id": "ack-control-plane-prod",
+      "display_name": "ACK attested agent control plane",
+      "service_type": "agent-control-plane",
+      "lifecycle": "active",
+      "provider": "Google Cloud C3",
+      "environment": "production",
+      "technologies": [
+        "intel-tdx",
+        "google-confidential-space"
+      ],
+      "endpoint": "https://verify.adverserial.ai/agents/",
+      "verification_api": "https://verify.adverserial.ai/api/agents/v1",
+      "runtime_network": "private",
+      "model_id": null,
+      "policy_ref": "/policies/ack-control-plane-production.json",
+      "release_ref": "/releases/ack-control-plane-poc-20261111-hardened.json",
+      "source_repository": "https://github.com/lordx64/adverserial-ack-internal",
+      "description": "Production ACK mediator, policy engine, Splunk connector and action-evidence signer running in Google Confidential Space on Intel TDX. The public endpoint is read-only; management remains private.",
+      "attestation": {
+        "state": "verified-at-publication",
+        "verification_method": "Fresh Google Confidential Space JWT verified against Google OIDC discovery and JWKS, with nonce, audience, freshness, production debug status, Intel TDX hardware, secure boot, project, service account and exact container digest checks. The receipt key is created inside the workload at every start and is trusted only through that JWT, whose eat_nonce commits to it; the key id below is the one observed at publication and changes at the next restart.",
+        "fresh_evidence_endpoint": "https://verify.adverserial.ai/api/agents/v1/attestation",
+        "verification_command": "curl --get 'https://verify.adverserial.ai/api/agents/v1/attestation' --data-urlencode 'audience=https://verify.adverserial.ai' --data-urlencode 'nonce=<fresh-random-nonce>'",
+        "verified_at": "2026-11-19T16:06:12Z",
+        "expires_at": "2026-11-19T17:06:12Z",
+        "evidence_digest": "sha256:lB_TOVjvEy-ArumMBQwhBp6dPyoztkKPypSaxbRON4c",
+        "receipt_key_id": "6KaLq2H1gWvS7dCFruTyKm0Nh2J9dw6LEt4MB1R1CVk",
+        "tls_spki_sha256": "sha256:7tQeLhWHerz6WF2d48pI2oxqRnGfLAiLgCbDopebya8"
+      }
+    }
+  ]
+}

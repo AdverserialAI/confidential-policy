@@ -1,0 +1,35 @@
+{
+  "$schema": "../schema/release-manifest.schema.json",
+  "version": 1,
+  "status": "pre-activation",
+  "release": "v0.1.0-rc.2",
+  "source": {
+    "repository": "https://github.com/AdverserialAI/attest-proxy",
+    "commit": "bb83785",
+    "tag": "v0.1.0-rc.2"
+  },
+  "artifacts": [
+    {
+      "name": "attest-proxy",
+      "image": "ghcr.io/adverserialai/attest-proxy@sha256:1d2d68368591c42c14512968c0570f076bd12bc68b243b1f97a6244055bfe1d0",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/37236233361",
+      "provenance": "github-attestation",
+      "sbom": "spdx"
+    },
+    {
+      "name": "gpu-evidence-collector",
+      "image": "ghcr.io/adverserialai/gpu-evidence-collector@sha256:4688f81d93c9e0290daed55872c94efccece601d0a920eb163b1dfa14fa20ee5",
+      "github_actions_run": "https://github.com/AdverserialAI/attest-proxy/actions/runs/37236233361",
+      "provenance": "github-attestation",
+      "sbom": "spdx"
+    }
+  ],
+  "activation_missing": [
+    "measured Intel TDX quote and event-log verification",
+    "fresh NVIDIA GPU EAT evidence validated by an independent verifier",
+    "canonical model artifact digest",
+    "runtime and rendered compose digests",
+    "attested cc-api TLS SPKI and receipt public key",
+    "signed active policy"
+  ]
+}

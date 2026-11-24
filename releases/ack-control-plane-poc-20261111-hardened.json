@@ -1,0 +1,29 @@
+{
+  "$schema": "../schema/release-manifest.schema.json",
+  "version": 1,
+  "status": "active",
+  "release": "poc-20261111-hardened",
+  "published_at": "2026-11-19T16:30:00Z",
+  "source": {
+    "repository": "https://github.com/lordx64/adverserial-ack-internal",
+    "commit": "8202b443df1d877fd2c366d815e2d8c7b1039044",
+    "tag": "poc-20261111-hardened"
+  },
+  "artifacts": [
+    {
+      "name": "ack-control-plane",
+      "image": "europe-west9-docker.pkg.dev/adverserial-ack-poc/ack-control-plane/mediator@sha256:881722174e6dcfd51c276358d73596553c649e979e964e9e29d2f34386db6314",
+      "cloud_build_id": "2c462185-537d-4032-a47a-789a813cd843",
+      "provenance": "Google Cloud Build record and immutable Artifact Registry digest",
+      "sbom": "not-published-for-poc"
+    }
+  ],
+  "policy_ref": "/policies/ack-control-plane-production.json",
+  "deployment": {
+    "project_number": "711745269151",
+    "zone": "europe-west9-a",
+    "instance": "ack-control-plane-prod",
+    "runtime": "Google Confidential Space on Intel TDX"
+  },
+  "activation_missing": []
+}
