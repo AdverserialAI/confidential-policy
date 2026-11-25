@@ -1,7 +1,7 @@
 {
   "$schema": "../schema/runtime-policy.schema.json",
   "version": 1,
-  "status": "active",
+  "status": "retired",
   "model_id": "lordx64/cyberglm",
   "allowed_runtime": {
     "tee": [
